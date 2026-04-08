@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "net.foxyas.wolfy_prototype.mixins",
+  "minVersion": "0.8",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "wolfy_prototype.refmap.json",
+  "plugin": "net.foxyas.wolfy_prototype.mixins.compatibility.ChangedExtensionMixinPlugin",
+  "mixins": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "client": [
+  ]
+}

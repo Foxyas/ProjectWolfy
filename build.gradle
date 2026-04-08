@@ -121,31 +121,35 @@ repositories {
     // ForgeGradle automatically adds the Forge maven and Maven Central for you
 
     // If you have mod jar dependencies in ./libs, you can declare them as a repository like so:
-    // flatDir {
-    //     dir 'libs'
-    // }
+    flatDir {
+        dir 'libs'
+    }
 
     maven {
-        url "https://cursemaven.com"
+        name "Curse maven"
+        url "https://cursemaven.com" // Curse forge mod place.
     }
 
     maven {
         name = "Changed"
-        url = "https://ltxprogrammer.github.io/maven/"
+        url = "https://ltxprogrammer.github.io/maven/" // Changed Mod Files place
     }
 
     maven {
         name = "Changed Addon"
         url = "https://raw.githubusercontent.com/Foxyas/Changed-Addon-Rework/Dev-1.20.1-0.15/mcmodsrepo/1.20.1"
+        // Changed addon Mod files place
     }
 }
 
 mixin {
-    add sourceSets.main, "changed_extension.refmap.json"
-    config "changed_extension.mixins.json"
+    add sourceSets.main, "${mod_id}.refmap.json"
+    config "${mod_id}.mixins.json"
+    config "${mod_id}.compatibility.mixins.json"
     env {
         remapRefMap = true
     }
+    // Mixin Stuff
 }
 
 dependencies {
@@ -164,14 +168,16 @@ dependencies {
     }
 
     //implementation fg.deobf('net.ltxprogrammer.changed:Changed-m1.18.2-f40.2.0:v0.14b') //Changed Local File
-    implementation fg.deobf("net.ltxprogrammer.changed:Changed-m1.20.1-f47.4.0:v0.15.1") {
+    implementation fg.deobf("net.ltxprogrammer.changed:Changed-m1.20.1-f47.4.0:v0.15.3") {
         changing = true
     }//Changed
 
-    implementation fg.deobf("com.foxyas.changed_addon:Changed-Addon-Rework:2.0.0") {
+    implementation fg.deobf("com.foxyas.changed_addon:Changed-Addon-Rework:2.8.0") {
         changing = true
     }//Changed Addon
 
+    implementation fg.deobf("net.adinvas.prototype_pain:prototype_pain-2.7.2:2.7.2")
+    implementation fg.deobf("net.adinvas.prototype_physics:prototype_physics-1.6:1.6")
 
     // Real mod deobf dependency examples - these get remapped to your current mappings
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api") // Adds JEI API as a compile dependency
